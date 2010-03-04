@@ -1,0 +1,7 @@
+.response{
+    background-color:#eeeeee;
+}
+.ajax-loading {
+	padding: 20px 0;
+	background: url(http://demos111.mootools.net/demos/Group/spinner.gif) no-repeat center;
+}
