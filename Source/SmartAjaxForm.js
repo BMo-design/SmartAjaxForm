@@ -23,7 +23,7 @@ var SmartAjaxForm = new Class({
 	options: {
 		'loadingClass': 'ajax-loading',
 		'responseClass': 'response',
-        'regExpClassname': /^ajaxForm/i  //class='ajaxForm'
+                'regExpClassname': /^ajaxForm/i  //class='ajaxForm'
         /* Events,
 		'onClick': $empty,
 		'onComplete': $empty,
@@ -39,10 +39,10 @@ var SmartAjaxForm = new Class({
 				e.stop();
 				var responseLayer = new Element('div', {
 					'html': '<br/><br/><br/>',
-                    'class': this.options.responseClass+' '+this.options.loadingClass,
+                                        'class': this.options.responseClass+' '+this.options.loadingClass,
 					'events': {
 						'click': function(){
-                             this.fireEvent('click');
+                                                         this.fireEvent('click');
 							 form_tag.replaces(responseLayer);
 						}.pass(form_tag,responseLayer).bind(this)
 					}
@@ -51,19 +51,19 @@ var SmartAjaxForm = new Class({
 
 				form_tag.set('send',{
 					onComplete: function(response) {
-                        this.fireEvent('complete',response);
+                                                this.fireEvent('complete',response);
 						responseLayer.set('html',response)
 						responseLayer.removeClass(this.options.loadingClass);
 					}.bind(this),
 					onFailure: function(){
-                        this.fireEvent('failure');
+                                                this.fireEvent('failure');
 						responseLayer.removeClass(this.options.loadingClass);
 						alert("Error, try it again!"); //German = "Fehler, versuchen Sie es erneut!"	
 					}.bind(this)
 				});
-                form_tag.send();
-			}.bindWithEvent(this));
-          }
+                                form_tag.send();
+		          }.bindWithEvent(this));
+                    }
 	    }.bind(this));
     
     }
