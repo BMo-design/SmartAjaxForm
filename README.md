@@ -17,7 +17,7 @@ Get started by copy this in your head:
 
 and add the class "ajaxForm" to your form-tags:
 
-<form id="myForm" class="ajaxForm" action="demo.php" method="post">
+form id="myForm" class="ajaxForm" action="demo.php" method="post"
 
   
 Syntax
