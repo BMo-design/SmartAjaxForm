@@ -1,7 +1,7 @@
 SmartAjaxForm
 ==========
 
-Lets just send forms via AJAX and display the result. You need only to set the class to "ajaxform" and it will work.
+Lets just send forms via AJAX and display the result. You need only to set the class to "ajaxForm" to your form-tag and it will work.
 
 ![Screenshot](http://software.BMo-design.de/images/SmartAjaxForm.png)
 
@@ -10,11 +10,14 @@ How to use
 
 Get started by copy this in your head:
 
- <script type="text/javascript">
     window.addEvent('domready', function() {
         var mySmartFormObj = new SmartAjaxForm();
     });
- </script>
+
+
+and add the class "ajaxForm" to your form-tags:
+
+<form id="myForm" class="ajaxForm" action="demo.php" method="post">
 
   
 Syntax
@@ -30,13 +33,16 @@ Arguments
 Options
 -------
 
-* regExpClassname: (regexp) To change the class name, for example /^ajaxForm/i  -> class='ajaxForm'	
-
+* regExpClassname: (regexp) To change the CSS class name, for example /^ajaxForm/i  -> class='ajaxForm'	
+* responseClass: (String) CSS class name for the response 
+* loadingClass: (String) CSS class name for the loading animation
 
 Events
 ------
 
-- no Events
+- onClick
+- onComplete
+- onFailure
 
 Contact
 -----------

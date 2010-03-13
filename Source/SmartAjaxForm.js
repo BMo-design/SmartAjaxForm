@@ -1,54 +1,70 @@
 /*
 --- 
 description: SmartAjaxForm
+
 authors: 
 - Benedikt Morschheuser (http://software.bmo-design.de)
+
 license:
 - MIT-style license
+
 requires: 
 - core/1.2.4: '*'
+
 provides: [SmartAjaxForm]
+
 ...
 */
-var SmartAjaxForm = new Class(
-{
-  Implements: [Events, Options],
-  options:
-  {
-    regExpClassname: /^ajaxForm/i  //class='ajaxForm'	
-  },
-  initialize: function(options)
-  {
-    this.setOptions(options);
-    
-    $$('form').each(function(form_tag){
-		if (form_tag.getProperty('class') && form_tag.getProperty('class').test(this.options.regExpClassname)){ //if form has class='ajaxForm'										
+
+var SmartAjaxForm = new Class({
+	
+	Implements: [Events, Options],
+  
+	options: {
+		'loadingClass': 'ajax-loading',
+		'responseClass': 'response',
+        'regExpClassname': /^ajaxForm/i  //class='ajaxForm'
+        /* Events,
+		'onClick': $empty,
+		'onComplete': $empty,
+		'onFailure': $empty*/
+	},
+  
+	initialize: function(element,options){
+		this.setOptions(options);
+		
+        $$('form').each(function(form_tag){
+		  if (form_tag.getProperty('class') && form_tag.getProperty('class').test(this.options.regExpClassname)){ //if form has class='ajaxForm'							
 			form_tag.addEvent('submit', function(e) {
 				e.stop();
 				var responseLayer = new Element('div', {
-					'class': 'response ajax-loading',
 					'html': '<br/><br/><br/>',
+                    'class': this.options.responseClass+' '+this.options.loadingClass,
 					'events': {
 						'click': function(){
+                             this.fireEvent('click');
 							 form_tag.replaces(responseLayer);
-						}.pass(form_tag,responseLayer)
+						}.pass(form_tag,responseLayer).bind(this)
 					}
 				});
 		 		responseLayer.replaces(form_tag);
 
-				this.set('send',{
+				form_tag.set('send',{
 					onComplete: function(response) {
+                        this.fireEvent('complete',response);
 						responseLayer.set('html',response)
-						responseLayer.removeClass('ajax-loading');
-					},
+						responseLayer.removeClass(this.options.loadingClass);
+					}.bind(this),
 					onFailure: function(){
-						responseLayer.removeClass('ajax-loading');
+                        this.fireEvent('failure');
+						responseLayer.removeClass(this.options.loadingClass);
 						alert("Error, try it again!"); //German = "Fehler, versuchen Sie es erneut!"	
-					}
+					}.bind(this)
 				});
-                this.send();
-			});
-		}
-	}.bind(this));
-   }
+                form_tag.send();
+			}.bindWithEvent(this));
+          }
+	    }.bind(this));
+    
+    }
 });
