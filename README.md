@@ -19,6 +19,7 @@ and add the class "ajaxForm" to your form-tags:
 
 form id="myForm" class="ajaxForm" action="demo.php" method="post"
 
+It is important to make no cross-domain request. So use relative urls in the action attribute. 
   
 Syntax
 ------
