@@ -4,7 +4,7 @@ description: SmartAjaxForm
 
 authors: 
 - Benedikt Morschheuser (http://software.bmo-design.de) 
-- Olivier Girardot
+- updated by Olivier Girardot (http://www.readtfb.net)
 
 license:
 - MIT-style license
