@@ -3,7 +3,7 @@ SmartAjaxForm
 
 Lets just send forms via AJAX and display the result. You need only to set the class to "ajaxForm" to your form-tag and it will work.
 
-![Screenshot](http://software.BMo-design.de/images/SmartAjaxForm.png)
+![Screenshot](http://software.bmo-design.de/demo/images/SmartAjaxForm.png)
 
 How to use
 ----------

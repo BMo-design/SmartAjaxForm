@@ -4,12 +4,13 @@ description: SmartAjaxForm
 
 authors: 
 - Benedikt Morschheuser (http://software.bmo-design.de)
+- thx to Olivier Girardot for the update groundwork
 
 license:
 - MIT-style license
 
 requires: 
-- core/1.2.4: '*'
+- core/1.3: '*'
 
 provides: [SmartAjaxForm]
 
@@ -62,7 +63,7 @@ var SmartAjaxForm = new Class({
 					}.bind(this)
 				});
                 form_tag.send();
-		      }.bindWithEvent(this));
+		      }.bind(this));
            }
 	    }.bind(this));
     
